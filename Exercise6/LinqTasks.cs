@@ -195,7 +195,8 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task4()
         {
-            IEnumerable<Emp> result = null;
+            IEnumerable<Emp> result = Emps
+                .Where(emp => emp.Salary == Task3());
             return result;
         }
 
@@ -204,7 +205,7 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task5()
         {
-            IEnumerable<object> result = null;
+            IEnumerable<object> result = Emps.Select(emp => new { Nazwisko = emp.Ename, Praca = emp.Job });
             return result;
         }
 
@@ -215,7 +216,11 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task6()
         {
-            IEnumerable<object> result = null;
+            IEnumerable<object> result = 
+                from e in Emps
+                from d in Depts on e.Deptno equals d.Deptno
+                select new {Nazwisko = e.en}
+                ;
             return result;
         }
 
@@ -234,7 +239,7 @@ namespace Exercise6
         /// </summary>
         public static bool Task8()
         {
-            bool result = false;
+            bool result = Emps.Any(emp => emp.Job.Equals("Backend programmer"));
             return result;
         }
 
@@ -244,7 +249,10 @@ namespace Exercise6
         /// </summary>
         public static Emp Task9()
         {
-            Emp result = null;
+            Emp result = Emps
+                .Where(e => e.Job.Equals("Frontend programmer"))
+                .OrderByDescending(e => e.HireDate)
+                .FirstOrDefault();
             return result;
         }
 
