@@ -339,7 +339,7 @@ namespace Exercise6
         public static IEnumerable<Emp> Task12Method(IEnumerable<Emp> Emps)
         {
             IEnumerable<Emp> result = Emps
-                .Where(emp => Emps.Any(x => x.Mgr != null && x.Mgr.Empno == emp.Empno))
+                .Where(emp => Emps.Any(x => x.Mgr != null && x.Mgr.Empno == emp.Empno)) // assert that Mgr is not null, for the Mgr.Empno comparison!!
                 .OrderBy(emp => emp.Ename)
                 .ThenByDescending(emp => emp.Salary);
             return result;
